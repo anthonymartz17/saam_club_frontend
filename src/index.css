@@ -100,13 +100,23 @@
 	text-align: center;
 	letter-spacing: 1px;
 	line-height: 1.5;
+	width: 100%;
+	min-width: fit-content;
+	font-size: small;
 }
 
 .btn_dark {
-	background-color: var(--lightdark);
+	background-color: var(--dark);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .btn_dark:hover {
+	background-color: var(--darkhover);
+}
+.btn_lightdark {
+	background-color: var(--lightdark);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.btn_lightdark:hover {
 	background-color: var(--darkhover);
 }
 
@@ -117,4 +127,20 @@
 .btn_accent:hover {
 	background-color: var(--accenthover);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.mobile_menu_backdrop {
+	backdrop-filter: blur(2px);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
+}
+.mobile_menu_backdrop.open {
+	visibility: visible;
+	opacity: 1;
 }
