@@ -9,11 +9,11 @@ export default function Header() {
 			<img src={saamLogo} alt="app logo" className="w-20" />
 			<span
 				onClick={() => setIsOpen(!isOpen)}
-				class="md:hidden material-symbols-outlined"
+				class="sm:hidden material-symbols-outlined"
 			>
 				menu
 			</span>
-			<nav className="hidden md:flex gap-4">
+			<nav className="hidden sm:flex gap-4">
 				<Link to="/auth" className="btn btn_lightdark">
 					Login
 				</Link>
