@@ -4,9 +4,9 @@ import AuthContextProvider from "./context/AuthContext";
 export default function Layout() {
 	return (
 		<AuthContextProvider>
-			<div className="bg-dark text-light min-h-screen roboto-light">
-				<Header />
-				<main className="bg-blue-800 px-4">
+			<div className="bg-dark text-light min-h-screen flex flex-col">
+				<Header className="bg-dark text-light" />
+				<main className="px-4 flex-1">
 					<Outlet />
 				</main>
 			</div>
