@@ -2,81 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-  --dark: "#161718",
-  --lightdark: "#373a40",
-  --light: "#FFFFFF",
-  --accent: "#FC4100",  
+:root {
+	--dark: #161718;
+	--darkhover: #5a5b5b;
+	--lightdark: #373a40;
+	--light: #ffffff;
+	--accent: #fc4100;
+	--accenthover: #d63700;
 }
 
+* {
+	font-size: 14px;
+}
 .roboto-thin {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: normal;
+	font-family: "Roboto", sans-serif;
+	font-weight: 100;
+	font-style: normal;
 }
 
 .roboto-light {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	font-style: normal;
 }
 
 .roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 }
 
 .roboto-medium {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+	font-family: "Roboto", sans-serif;
+	font-weight: 500;
+	font-style: normal;
 }
 
 .roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: normal;
+	font-family: "Roboto", sans-serif;
+	font-weight: 700;
+	font-style: normal;
 }
 
 .roboto-black {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: normal;
+	font-family: "Roboto", sans-serif;
+	font-weight: 900;
+	font-style: normal;
 }
 
 .roboto-thin-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: italic;
+	font-family: "Roboto", sans-serif;
+	font-weight: 100;
+	font-style: italic;
 }
 
 .roboto-light-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: italic;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+	font-style: italic;
 }
 
 .roboto-regular-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: italic;
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-style: italic;
 }
 
 .roboto-medium-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: italic;
+	font-family: "Roboto", sans-serif;
+	font-weight: 500;
+	font-style: italic;
 }
 
 .roboto-bold-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: italic;
+	font-family: "Roboto", sans-serif;
+	font-weight: 700;
+	font-style: italic;
 }
 
 .roboto-black-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: italic;
+	font-family: "Roboto", sans-serif;
+	font-weight: 900;
+	font-style: italic;
+}
+
+.btn {
+	color: var(--light);
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	border: none;
+	outline: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 10px;
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	letter-spacing: 1px;
+	line-height: 1.5;
+}
+
+.btn_dark {
+	background-color: var(--lightdark);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.btn_dark:hover {
+	background-color: var(--darkhover);
+}
+
+.btn_accent {
+	background-color: var(--accent);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.btn_accent:hover {
+	background-color: var(--accenthover);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
