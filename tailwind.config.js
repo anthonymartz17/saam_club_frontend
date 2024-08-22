@@ -9,6 +9,7 @@ export default {
 				light: "#FFFFFF",
 				accent: "#FC4100",
 			},
+			
 		},
 	},
 	plugins: [],
