@@ -1,11 +1,22 @@
 import { useState } from "react";
 import saamLogo from "../assets/saam_logo.svg";
 import MobileMenu from "./MobileMenu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 export default function Header() {
-	const { currentUser } = useAuth();
+	const navigate = useNavigate();
+	const { currentUser, logout } = useAuth();
 	const [isOpen, setIsOpen] = useState(false);
+
+	async function signout() {
+		try {
+			await logout();
+
+			navigate("/");
+		} catch (error) {
+			throw error;
+		}
+	}
 	return (
 		<header className="text-light p-4 flex justify-between items-center">
 			<img src={saamLogo} alt="app logo" className="w-20" />
@@ -32,9 +43,9 @@ export default function Header() {
 				</ul>
 				<div className="flex gap-4">
 					{currentUser ? (
-						<Link to="/auth/logout" className="btn btn_lightdark">
+						<button onClick={() => signout()} className="btn btn_lightdark">
 							Logout
-						</Link>
+						</button>
 					) : (
 						<div className="flex  gap-2">
 							<Link to="/auth" className="btn btn_lightdark">
