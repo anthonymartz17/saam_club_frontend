@@ -1,11 +1,23 @@
+const SAAM_API_URL = import.meta.env.VITE_SAAM_CLUB_API_URL;
 
-const SAAM_API_URL = import.meta.env.VITE_SAAM_CLUB_API_URL
+// getTopLevelComments,
+// getCommentReplies,
+// getCommentById,
+// createComment,
+// updateComment,
+// deleteComment,
 
-
-export function fetchCommentsByPostId(postId) {
-	return fetch(
-		`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/0864595a/comments?item_id=${postId}`
-	)
-		.then((response) => response.json())
-		.then((data) => data.comments);
+export async function getTopLevelComments(postId) {
+	try {
+		const res = await fetch(
+			`${SAAM_API_URL}/comments/${postId}/top-level-comments`
+		);
+		if (!res.ok) {
+			throw new Error(res.statusText);
+		}
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		throw error;
+	}
 }
