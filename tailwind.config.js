@@ -10,7 +10,9 @@ export default {
 				accent: "#FC4100",
 			},
 			boxShadow: {
-				light:"rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px",
+				light:
+					"rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px",
+				darkshadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px;",
 			},
 		},
 	},
