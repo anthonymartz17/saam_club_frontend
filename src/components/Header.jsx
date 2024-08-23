@@ -3,6 +3,7 @@ import saamLogo from "../assets/saam_logo.svg";
 import MobileMenu from "./MobileMenu";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+
 export default function Header() {
 	const navigate = useNavigate();
 	const { currentUser, logout } = useAuth();
