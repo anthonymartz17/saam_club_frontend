@@ -51,7 +51,7 @@ export default function MobileMenuUser({ isOpen, onSetIsOpen }) {
 					{currentUser && (
 						<li>
 							<NavLink
-								to="/dashboard"
+								to="/account"
 								className="flex py-2 gap-1 mb-1"
 								onClick={() => onSetIsOpen(false)}
 							>
