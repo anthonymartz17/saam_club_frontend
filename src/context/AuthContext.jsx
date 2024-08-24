@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 import { auth } from "../../firebase-config";
-
+import { fetchUserProfile } from "../services/users.services";
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
@@ -20,12 +20,16 @@ const AuthContext = createContext({
 
 export default function AuthContextProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState({});
+	const [user, setUser] = useState({});
 
 	async function signUp(email, password) {
 		return createUserWithEmailAndPassword(auth, email, password);
 	}
 	async function login(email, password) {
-		return signInWithEmailAndPassword(auth, email, password);
+		const res = await signInWithEmailAndPassword(auth, email, password);
+		const userData = await fetchUserProfile(res.user.accessToken);
+		console.log(userData, "userData");
+		setUser(userData);
 	}
 	async function logout() {
 		return signOut(auth);
@@ -45,6 +49,7 @@ export default function AuthContextProvider({ children }) {
 
 	const ctxValue = {
 		currentUser,
+		user,
 		signUp,
 		login,
 		logout,

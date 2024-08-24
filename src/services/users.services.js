@@ -1,6 +1,6 @@
 const SAAM_API_URL = import.meta.env.VITE_SAAM_CLUB_API_URL;
 
-export async function getAllUsers() {
+export async function fetchAllUsers() {
 	try {
 		const response = await fetch(`${SAAM_API_URL}/users`);
 		if (!response.ok) {
@@ -13,9 +13,13 @@ export async function getAllUsers() {
 	}
 }
 
-export async function getUserById(userId) {
+export async function fetchUserProfile(token) {
 	try {
-		const response = await fetch(`${SAAM_API_URL}/users/${userId}`);
+		const response = await fetch(`${SAAM_API_URL}/users/profile`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
 		if (!response.ok) {
 			throw new Error("Failed to fetch user");
 		}
