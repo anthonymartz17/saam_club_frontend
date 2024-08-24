@@ -9,16 +9,16 @@ import "./Posts.css";
 export default function Posts({ onSetIsOpen }) {
   const { posts, toggleLikeState, fetchTopLevelComments } = usePostContext();
   const { currentUser } = useAuth();
-  const [expandedPostId, setExpandedPostId] = useState(null);
   const navigate = useNavigate();
 
-  const handleExpandToggle = (id) => {
-    setExpandedPostId(expandedPostId === id ? null : id);
-  };
+  const [expandedPostId, setExpandedPostId] = useState(null);
+  const [confirmRedirect, setConfirmRedirect] = useState(false);
+
+  const handleExpandToggle = (id) => setExpandedPostId(expandedPostId === id ? null : id);
 
   const handleLikeClick = async (postId) => {
     if (!currentUser) {
-      navigate("/auth/signup");
+      setConfirmRedirect(true);
       return;
     }
     await toggleLikeState(1, postId, currentUser.accessToken);
@@ -30,7 +30,9 @@ export default function Posts({ onSetIsOpen }) {
   };
 
   return (
-    <div className="w-[50%] mx-[auto]">
+    <div
+      className={`w-[50%] mx-[auto] ${confirmRedirect ? "pointer-events-none" : ""}`}
+    >
       <h2 className="text-white-500 text-[36px] font-bold mb-10">Notes</h2>
       {posts.map((post) => {
         const isExpanded = expandedPostId === post.id;
@@ -81,6 +83,27 @@ export default function Posts({ onSetIsOpen }) {
                     favorite
                   </span>
                   {post.like_count}
+                  {confirmRedirect && (
+                    <div className="pointer-events-auto fixed inset-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50 backdrop-blur-sm z-[1000] text-2xl">
+                      <h3 className="text-white mb-5">
+                        You must sign in to like a post
+                      </h3>
+                      <div>
+                        <button
+                          className="bg-white bg-opacity-60 text-base mx-2"
+                          onClick={() => navigate("/auth/signup")}
+                        >
+                          Sign Up
+                        </button>
+                        <button
+                          className="bg-white bg-opacity-60 text-base mx-2"
+                          onClick={() => setConfirmRedirect(false)}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </p>
                 <p
                   className="flex justify-center items-center cursor-pointer gap-1"
