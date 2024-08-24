@@ -25,7 +25,7 @@ export default function MobileMenuUser({ isOpen, onSetIsOpen }) {
 			>
 				<div className="flex justify-between px-2 py-4">
 					<div className="flex gap-2 items-center">
-						<span class="material-symbols-outlined">account_circle</span>
+						<span className="material-symbols-outlined">account_circle</span>
 						<span>Username</span>
 					</div>
 
@@ -44,7 +44,7 @@ export default function MobileMenuUser({ isOpen, onSetIsOpen }) {
 							className="flex py-2 gap-1 mb-1"
 							onClick={() => onSetIsOpen(false)}
 						>
-							<span class="material-symbols-outlined">list_alt</span>
+							<span className="material-symbols-outlined">list_alt</span>
 							<span>Feed</span>
 						</NavLink>
 					</li>
@@ -55,7 +55,7 @@ export default function MobileMenuUser({ isOpen, onSetIsOpen }) {
 								className="flex py-2 gap-1 mb-1"
 								onClick={() => onSetIsOpen(false)}
 							>
-								<span class="material-symbols-outlined">person</span>
+								<span className="material-symbols-outlined">person</span>
 								<span>Profile</span>
 							</NavLink>
 						</li>

@@ -3,7 +3,7 @@ import saamLogo from "../assets/saam_logo.svg";
 import MobileMenu from "./MobileMenu";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import CommentButton from "./CommentButton";
+
 export default function Header() {
 	const navigate = useNavigate();
 	const { currentUser, logout } = useAuth();
@@ -23,7 +23,7 @@ export default function Header() {
 			<img src={saamLogo} alt="app logo" className="w-20" />
 			<span
 				onClick={() => setIsOpen(!isOpen)}
-				class="sm:hidden material-symbols-outlined"
+				className="sm:hidden material-symbols-outlined"
 			>
 				menu
 			</span>
