@@ -132,9 +132,9 @@ export default function PostContextProvider({ children }) {
 	}
 
 	//likes
-	async function toggleLikeState(userId, postId) {
+	async function toggleLikeState(userId, postId, token) {
 		try {
-			const res = await toggleLike(userId, postId);
+			const res = await toggleLike(userId, postId, token);
 			setPosts((prevPosts) =>
 				prevPosts.map((post) =>
 					post.id === postId
