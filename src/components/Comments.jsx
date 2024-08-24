@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
+import { usePostContext } from "../context/PostContext";
 
 const commentsData = [
 	{
@@ -36,10 +37,16 @@ const commentsData = [
 	},
 ];
 
-export default function MobileMenuUser({ isOpen, onSetIsOpen }) {
+export default function Comments({ isOpen, onSetIsOpen }) {
+	const { loading, error, comments, fetchTopLevelComments } =
+		usePostContext();
 	const navigate = useNavigate();
 	const { currentUser, logout } = useAuth();
-	const [comments, setComments] = useState(commentsData);
+	// const [comments, setComments] = useState([]);
+
+	useEffect(() => {
+		fetchTopLevelComments(1);
+	}, []);
 
 	return (
 		<>
@@ -59,13 +66,16 @@ export default function MobileMenuUser({ isOpen, onSetIsOpen }) {
 							close
 						</span>
 					</div>
-
-					<CommentForm />
-					<ul className="flex flex-col gap-4  ">
-						{comments.map((comment) => (
-							<Comment key={comment.id} comment={comment} />
-						))}
-					</ul>
+					{currentUser && <CommentForm />}
+					{loading && <p>Loading...</p>}
+					{error && <p className="text-red-500">Error: {error}</p>}
+					{!loading && !error && (
+						<ul className="flex flex-col gap-4  ">
+							{comments.map((comment) => (
+								<Comment key={comment.id} comment={comment} />
+							))}
+						</ul>
+					)}
 				</div>
 			</div>
 			<div

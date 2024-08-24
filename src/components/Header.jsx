@@ -23,7 +23,7 @@ export default function Header() {
 			<img src={saamLogo} alt="app logo" className="w-20" />
 			<span
 				onClick={() => setIsOpen(!isOpen)}
-				class="sm:hidden material-symbols-outlined"
+				className="sm:hidden material-symbols-outlined"
 			>
 				menu
 			</span>

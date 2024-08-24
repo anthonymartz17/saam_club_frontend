@@ -2,7 +2,7 @@ const SAAM_API_URL = import.meta.env.VITE_SAAM_CLUB_API_URL;
 
 export async function getAllPosts() {
 	try {
-		const response = await fetch(`${API_URL}/posts`);
+		const response = await fetch(`${SAAM_API_URL}/posts`);
 		if (!response.ok) {
 			throw new Error("Failed to fetch posts");
 		}
@@ -15,7 +15,7 @@ export async function getAllPosts() {
 
 export async function getPostById(postId) {
 	try {
-		const response = await fetch(`${API_URL}/${postId}`);
+		const response = await fetch(`${SAAM_API_URL}/posts/${postId}`);
 		if (!response.ok) {
 			throw new Error("Failed to fetch post");
 		}
@@ -26,12 +26,13 @@ export async function getPostById(postId) {
 	}
 }
 
-export async function createPost(post) {
+export async function createPost(post,token) {
 	try {
-		const response = await fetch(`${API_URL}/posts`, {
+		const response = await fetch(`${SAAM_API_URL}/posts`, {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(post),
 		});
@@ -45,12 +46,13 @@ export async function createPost(post) {
 	}
 }
 
-export async function updatePostById(postId, updatedPost) {
+export async function updatePostById(postId, updatedPost,token) {
 	try {
-		const response = await fetch(`${API_URL}/posts/${postId}`, {
+		const response = await fetch(`${SAAM_API_URL}/posts/${postId}`, {
 			method: "PUT",
 			headers: {
-				"Content-Type": "application/json",
+        "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(updatedPost),
 		});
@@ -66,7 +68,7 @@ export async function updatePostById(postId, updatedPost) {
 
 export async function deletePostById(postId) {
 	try {
-		const response = await fetch(`${API_URL}/posts/${postId}`, {
+		const response = await fetch(`${SAAM_API_URL}/posts/${postId}`, {
 			method: "DELETE",
 		});
 		if (!response.ok) {
