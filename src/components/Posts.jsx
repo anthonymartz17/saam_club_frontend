@@ -20,6 +20,7 @@ export default function Posts({ onSetIsOpen }) {
   const handleLikeClick = async (postId) => {
     if (!currentUser) {
       setConfirmRedirect(true);
+      console.log("Function is working");
       return;
     }
     await toggleLikeState(1, postId, currentUser.accessToken);
@@ -29,11 +30,6 @@ export default function Posts({ onSetIsOpen }) {
     onSetIsOpen(true);
     await fetchTopLevelComments(postId);
   };
-
-  function seeComments(postId) {
-    fetchTopLevelComments(postId);
-    onSetIsOpen(true);
-  }
 
   return (
     <div
@@ -77,34 +73,34 @@ export default function Posts({ onSetIsOpen }) {
               {post.content.length > 300 && (
                 <button
                   onClick={() => handleExpandToggle(post.id)}
-                  className="text-blue-500 cursor-pointer"
+                  className="text-blue-500 bg-transparent border-none text-[#1a73e8] cursor-pointer p-0 text-sm"
                 >
                   {isExpanded ? "Show Less" : "Show More"}
                 </button>
               )}
               <div className="flex justify-around items-center">
-                <p
-                  className="flex justify-center items-center cursor-pointer gap-1"
-                  onClick={() => handleLikeClick(post.id)}
-                >
-                  <span className={`text-[18px] material-symbols-outlined`}>
+                <p className="flex justify-center items-center cursor-pointer gap-1">
+                  <span
+                    className={`text-[18px] material-symbols-outlined`}
+                    onClick={() => handleLikeClick(post.id)}
+                  >
                     favorite
                   </span>
                   {post.like_count}
                   {confirmRedirect && (
-                    <div className="pointer-events-auto fixed inset-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50 backdrop-blur-sm z-[1000] text-2xl">
+                    <div className="pointer-events-auto fixed inset-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-50 text-2xl">
                       <h3 className="text-white mb-5">
                         You must sign in to like a post
                       </h3>
                       <div>
                         <button
-                          className="bg-white bg-opacity-60 text-base mx-2"
+                          className="bg-orange-500 text-base mx-2 pt-1.5 pb-1.5 px-5 rounded-md"
                           onClick={() => navigate("/auth/signup")}
                         >
                           Sign Up
                         </button>
                         <button
-                          className="bg-white bg-opacity-60 text-base mx-2"
+                          className="bg-orange-500 text-base mx-2 pt-1.5 pb-1.5 px-5 rounded-md"
                           onClick={() => setConfirmRedirect(false)}
                         >
                           Cancel
