@@ -1,8 +1,13 @@
 import React from "react";
 import { useState } from "react";
-
+import { useAuth } from "../context/AuthContext";
+import { usePostContext } from "../context/PostContext";
 export default function CommentButton() {
+	const { currentUser, user } = useAuth();
+	const { addPost } = usePostContext();
+
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [post, setPost] = useState("");
 
 	const openModal = () => {
 		setIsModalOpen(true);
@@ -11,7 +16,16 @@ export default function CommentButton() {
 		setIsModalOpen(false);
 	};
 
-	const handlePost = () => {};
+	async function handlePost() {
+		e.preventDefault();
+		try {
+			await addPost({ user_id: user.id, post }, currentUser.accessToken);
+			setPost("");
+			closeModal();
+		} catch (error) {
+			console.error("Error adding post:", error);
+		}
+	}
 
 	return (
 		<div className="comment-button my-10">
@@ -31,21 +45,25 @@ export default function CommentButton() {
 				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
 					<div className="bg-gray-900 text-white rounded-lg p-6 w-full max-w-lg">
 						<h2 className="text-xl mb-4">Create Post</h2>
-						<textarea
-							className="w-full h-32 p-2 bg-gray-800 rounded-lg border border-gray-700 focus:outline-none"
-							placeholder="What's on your mind?"
-						></textarea>
-						<div className="mt-4 flex justify-end">
-							<button
-								className="bg-gray-700 text-white px-4 py-2 rounded-lg mr-2"
-								onClick={closeModal}
-							>
-								Cancel
-							</button>
-							<button className="btn_accent text-white px-4 py-2 rounded-lg">
-								Post
-							</button>
-						</div>
+						<form onSubmit={handlePost}>
+							<textarea
+								value={post}
+								onChange={(e) => setPost(e.target.value)}
+								className="w-full h-32 p-2 bg-gray-800 rounded-lg border border-gray-700 focus:outline-none"
+								placeholder="What's on your mind?"
+							></textarea>
+							<div className="mt-4 flex justify-end">
+								<button
+									className="bg-gray-700 text-white px-4 py-2 rounded-lg mr-2"
+									onClick={closeModal}
+								>
+									Cancel
+								</button>
+								<button className="btn_accent text-white px-4 py-2 rounded-lg">
+									Post
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			)}
