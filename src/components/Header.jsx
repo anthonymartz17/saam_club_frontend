@@ -3,6 +3,7 @@ import saamLogo from "../assets/saam_logo.svg";
 import MobileMenu from "./MobileMenu";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import CommentButton from "./CommentButton";
 export default function Header() {
 	const navigate = useNavigate();
 	const { currentUser, logout } = useAuth();
@@ -58,8 +59,10 @@ export default function Header() {
 					)}
 				</div>
 			</nav>
+			<CommentButton />
 
 			<MobileMenu isOpen={isOpen} onSetIsOpen={setIsOpen} />
 		</header>
+		
 	);
 }
