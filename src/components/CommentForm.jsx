@@ -14,7 +14,10 @@ export default function CommentForm({ commentId }) {
 				<div className="flex items-center  gap-2">
 					<img
 						className="w-14 h-14 rounded-full object-cover"
-						src="https://t3.ftcdn.net/jpg/03/62/50/16/360_F_362501638_FimxwTbbGUoRtjaypXDPGAyYCFvfvYy0.jpg"
+						src={
+							"https://t3.ftcdn.net/jpg/03/62/50/16/360_F_362501638_FimxwTbbGUoRtjaypXDPGAyYCFvfvYy0.jpg" ||
+							"https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg"
+						}
 						alt=""
 					/>
 					<p>User@name</p>

@@ -91,7 +91,10 @@ export default function Comment({ comment }) {
 				<div className="flex items-center gap-2 mb-2">
 					<img
 						className="w-10 h-10 rounded-full object-cover"
-						src={comment.img_url}
+						src={
+							comment.img_url ||
+							"https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg"
+						}
 						alt="photo of user"
 					/>
 					<div className="flex flex-col">
