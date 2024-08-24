@@ -59,8 +59,10 @@ export default function Header() {
 					)}
 				</div>
 			</nav>
+			<CommentButton />
 
 			<MobileMenu isOpen={isOpen} onSetIsOpen={setIsOpen} />
 		</header>
+		
 	);
 }
