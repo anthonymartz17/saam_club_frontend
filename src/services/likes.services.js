@@ -1,24 +1,16 @@
-const URL = import.meta.env.VITE_SAAM_CLUB_API_URL;
+const SAAM_API_URL = import.meta.env.VITE_SAAM_CLUB_API_URL;
 
-// Toggle like for a post
-export const toggleLike = async (postId, userId, setIsLiked, isLiked) => {
+export async function toggleLike(userId, postId) {
   try {
-    const response = await fetch(`/post/${postId}/user/${userId}/toggleLike`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const response = await fetch(`${SAAM_API_URL}/likes/post/${postId}/user/${userId}/toggleLike`, {
+      method: 'POST',
     });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      setIsLiked(!isLiked);
-      console.log(data.message);
-    } else {
-      console.error(data.message);
+    if (!response.ok) {
+      throw new Error('Failed to toggle like');
     }
+    return await response.json();
   } catch (error) {
-    console.error("Error toggling like:", error);
+    console.error(`Error toggling like for post with id ${postId} by user with id ${userId}:`, error);
+    throw error;
   }
-};
+}
