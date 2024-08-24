@@ -10,12 +10,7 @@ export default function FeedPage() {
 	return (
 		<PostContextProvider>
 			<div>
-				<div className="w-5">
-					<button className="btn btn_accent" onClick={() => setIsOpen(true)}>
-						comments
-					</button>
-				</div>
-				<Posts />
+				<Posts isOpen={isOpen} onSetIsOpen={setIsOpen} />
 				<Comments isOpen={isOpen} onSetIsOpen={setIsOpen} />
 			</div>
 		</PostContextProvider>

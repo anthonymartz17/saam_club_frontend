@@ -38,8 +38,7 @@ const commentsData = [
 ];
 
 export default function Comments({ isOpen, onSetIsOpen }) {
-	const { loading, error, comments, fetchTopLevelComments } =
-		usePostContext();
+	const { loading, error, comments, fetchTopLevelComments } = usePostContext();
 	const navigate = useNavigate();
 	const { currentUser, logout } = useAuth();
 	// const [comments, setComments] = useState([]);

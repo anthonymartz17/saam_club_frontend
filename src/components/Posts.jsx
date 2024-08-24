@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { timeAgo } from "../utils/formatUtils";
-// import { getPosts } from "../services/posts.services";
-// import { toggleLike } from "../services/posts.services";
-// import Comments from "./Comments";
 import { usePostContext } from "../context/PostContext";
+import { useAuth } from "../context/AuthContext";
 import "./Posts.css";
 
-export default function Posts() {
-	const { posts } = usePostContext();
+export default function Posts({ isOpen, onSetIsOpen }) {
+	const { posts, likePost, unlikePost } = usePostContext();
+	const { currentUser } = useAuth();
 	const [expandedPostId, setExpandedPostId] = useState(null);
 
 	const handleExpandToggle = (id) => {
