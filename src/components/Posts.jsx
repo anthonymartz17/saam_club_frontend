@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import "./Posts.css";
 
 export default function Posts({ isOpen, onSetIsOpen }) {
-	const { posts, likePost, unlikePost } = usePostContext();
+	const { posts, toggleLikeState, fetchTopLevelComments } = usePostContext();
 	const { currentUser } = useAuth();
 	const [expandedPostId, setExpandedPostId] = useState(null);
 

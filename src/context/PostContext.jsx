@@ -132,28 +132,18 @@ export default function PostContextProvider({ children }) {
 	}
 
 	//likes
-	async function likePost(userId, postId) {
+	async function toggleLikeState(userId, postId) {
 		try {
-			await toggleLike(userId, postId);
+			const res = await toggleLike(userId, postId);
 			setPosts((prevPosts) =>
 				prevPosts.map((post) =>
 					post.id === postId
-						? { ...post, like_count: post.like_count + 1 }
-						: post
-				)
-			);
-		} catch (err) {
-			setError(err.message);
-		}
-	}
-
-	async function unlikePost(userId, postId) {
-		try {
-			await toggleLike(userId, postId);
-			setPosts((prevPosts) =>
-				prevPosts.map((post) =>
-					post.id === postId
-						? { ...post, like_count: post.like_count - 1 }
+						? {
+								...post,
+								like_count: res.liked
+									? post.like_count + 1
+									: post.like_count - 1,
+						  }
 						: post
 				)
 			);
@@ -176,8 +166,7 @@ export default function PostContextProvider({ children }) {
 		deleteComment,
 		fetchTopLevelComments,
 		fetchCommentReplies,
-		likePost,
-		unlikePost,
+		toggleLikeState,
 	};
 
 	return (

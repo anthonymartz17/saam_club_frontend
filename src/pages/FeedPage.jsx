@@ -7,11 +7,12 @@ import Posts from "../components/Posts";
 
 export default function FeedPage() {
 	const [isOpen, setIsOpen] = useState(false);
+	const [postId, setPostId] = useState(null);
 	return (
 		<PostContextProvider>
 			<div>
-				<Posts isOpen={isOpen} onSetIsOpen={setIsOpen} />
-				<Comments isOpen={isOpen} onSetIsOpen={setIsOpen} />
+				<Posts isOpen={isOpen} onSetIsOpen={setIsOpen} setPostId={setPostId} />
+				<Comments isOpen={isOpen} onSetIsOpen={setIsOpen} postId={postId} />
 			</div>
 		</PostContextProvider>
 	);
