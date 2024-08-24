@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./Posts.css";
 
-export default function Posts({ isOpen, onSetIsOpen }) {
+export default function Posts({ onSetIsOpen }) {
   const { posts, toggleLikeState, fetchTopLevelComments } = usePostContext();
   const { currentUser } = useAuth();
   const [expandedPostId, setExpandedPostId] = useState(null);
@@ -22,6 +22,11 @@ export default function Posts({ isOpen, onSetIsOpen }) {
       return;
     }
     await toggleLikeState(1, postId, currentUser.accessToken);
+  };
+
+  const handleCommentClick = async (postId) => {
+    onSetIsOpen(true);
+    await fetchTopLevelComments(postId);
   };
 
   return (
@@ -72,13 +77,15 @@ export default function Posts({ isOpen, onSetIsOpen }) {
                   className="flex justify-center items-center cursor-pointer gap-1"
                   onClick={() => handleLikeClick(post.id)}
                 >
-                  {/* ${isLiked ? "text-red-500" : "text-gray-500"} */}
                   <span className={`text-[18px] material-symbols-outlined`}>
                     favorite
                   </span>
                   {post.like_count}
                 </p>
-                <p className="flex justify-center items-center cursor-pointer gap-1">
+                <p
+                  className="flex justify-center items-center cursor-pointer gap-1"
+                  onClick={() => handleCommentClick(post.id)}
+                >
                   <span className="text-[18px] material-symbols-outlined">
                     chat_bubble
                   </span>
