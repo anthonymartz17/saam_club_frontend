@@ -39,6 +39,7 @@ export default function PostContextProvider({ children }) {
 	}, []);
 
 	async function addPost(post, token) {
+		console.log(post, token);
 		try {
 			const newPost = await createPost(post, token);
 			setPosts((prevPosts) => [newPost, ...prevPosts]);
